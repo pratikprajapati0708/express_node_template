@@ -6,9 +6,9 @@ const schema = zod.array(zod.number());
 app.use(express.json())
 
 // const schema = zod.object({
-//     email : zod.string(),
-//     password : zod.string(),
-//      country : z.literal("IN").or(z.literal("US")),
+//     email : zod.string(), //email
+//     password : zod.string(),// pass-altlest 8 char
+//      country : z.literal("IN").or(z.literal("US")), //  IN,US
 //     country: z.array(z.number())
 // })
 
