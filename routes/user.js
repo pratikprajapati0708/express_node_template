@@ -1,39 +1,22 @@
-const mongoose = require('mongoose');
+const { Router } = require("express");
+const router = Router();
+const userMiddleware = require("../middleware/user");
 
-// Connect to MongoDB
-mongoose.connect('mongodb+srv://prajapatipratik292:kpratik23@mean-vercel-fitclub.3i7vyse.mongodb.net/');
-
-// Define schemas
-const AdminSchema = new mongoose.Schema({
-    // Schema definition here
-    username : String,
-    password : String
+// User Routes
+router.post('/signup', (req, res) => {
+    // Implement user signup logic
 });
 
-const UserSchema = new mongoose.Schema({
-    // Schema definition here
-    username : String,
-    password : String,
-    purchasedCourses : [{
-        type : mongoose.Schema.Types.ObjectId,
-        ref: 'Course'  // refers to course table
-    }]
+router.get('/courses', (req, res) => {
+    // Implement listing all courses logic
 });
 
-const CourseSchema = new mongoose.Schema({
-    // Schema definition here
-    title : String,
-    description : String,
-    imageLink : String,
-    price : Number
+router.post('/courses/:courseId', userMiddleware, (req, res) => {
+    // Implement course purchase logic
 });
 
-const Admin = mongoose.model('Admin', AdminSchema);
-const User = mongoose.model('User', UserSchema);
-const Course = mongoose.model('Course', CourseSchema);
+router.get('/purchasedCourses', userMiddleware, (req, res) => {
+    // Implement fetching purchased courses logic
+});
 
-module.exports = {
-    Admin,
-    User,
-    Course
-}
+module.exports = router
